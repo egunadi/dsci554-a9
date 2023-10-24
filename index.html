@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDP and Population Comparison between Japan, Korea, Indonesia, China, and Singapore</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/scatterplot.js"></script>
+    <script src="js/bar-chart.js"></script>
+    <script src="js/table.js"></script>
+    <script src="js/line-chart.js"></script>
+    <script src="js/pie-chart.js"></script>
+    <script src="js/big-number.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Dashboard Header -->
+        <div class="row dashboard-header">
+            <div class="col">
+                <h1 class="mt-4">GDP and Population Comparison between Japan, Korea, Indonesia, China, and Singapore</h1>
+            </div>
+        </div>
+        <!-- First Row -->
+        <div class="row">
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="scatterplot.html">Population from 1970-2020</a></h5>
+                        <div class="chart-container">
+                            <div id="scatterplot" class="chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="bar-chart.html">GDP per Capita from 1970-2020</a></h5>
+                        <div class="chart-container">
+                            <div id="bar-chart" class="chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Second Row -->
+        <div class="row mt-4">
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="line-chart.html">GDP from 1970-2020</a></h5>
+                        <div class="line-chart" id="line-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="pie-chart.html">Relative populations in 2020</a></h5>
+                        <div id="pie-chart" class="chart">
+                            <div id="legend" class="legend"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Third Row -->
+        <div class="row mt-4">
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="table.html">Summary Statistics on Population & GDP</a></h5>
+                        <div class="table-responsive">
+                            <div id="table-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body" id="big-number-card">
+                        <h5 class="card-title"><a href="big-number.html">GDP per Capita in 2020</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initial chart creation
+        createScatterplot();
+        createBarChart();
+        createTable();
+        createLineChart();
+        createPieChart();
+        createBigNumber();
+
+        // Handle window resize to update chart dimensions
+        window.addEventListener("resize", function () {
+            createScatterplot();
+            createBarChart();
+            createLineChart();
+        });
+    </script>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

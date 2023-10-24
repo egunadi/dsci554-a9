@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDP and Population Comparison between Japan, Korea, Indonesia, China, and Singapore</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/line-chart.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Dashboard Header -->
+        <div class="row dashboard-header">
+            <div class="col">
+                <h1 class="mt-4">GDP and Population Comparison between Japan, Korea, Indonesia, China, and Singapore</h1>
+            </div>
+        </div>
+        <div class="col-md-6"> <!-- Make each card take up half of the row -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">GDP from 1970-2020</h5>
+                    <div class="line-chart" id="line-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div id="line-chart" class="chart"></div>
+            <div class="mt-4 text-left">
+                <a href="index.html" class="btn btn-primary btn-sm">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Initial chart creation
+        createLineChart();
+
+        // Handle window resize to update chart dimensions
+        window.addEventListener("resize", function () {
+            createLineChart();
+        });
+    </script>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
