@@ -35,6 +35,13 @@ function createProportionalSymbolMap() {
         {"Country":"Singapore","radius":7.6875672355,"lat":1.3521,"lon":103.8198}
     ];
 
+    const countries = Array.from(new Set(bubbleData.map(d => d.Country))); // Get unique countries
+
+    // Define a color scale
+    var colorScale = d3.scaleOrdinal()
+        .domain(countries)
+        .range(d3.schemeTableau10);
+
     var bubbleGroup = svgMap.append("g");
 
     bubbleGroup.selectAll("circle")
@@ -44,7 +51,7 @@ function createProportionalSymbolMap() {
         .attr("cx", function (d) { return projection([d.lon, d.lat])[0]; })
         .attr("cy", function (d) { return projection([d.lon, d.lat])[1]; })
         .attr("r", function (d) { return d.radius; })
-        .attr("fill", function (d) { return (d.Country === "Japan") ? "steelblue" : "orange"; })
+        .attr("fill", function (d) { return colorScale(d.Country); })
         .attr("stroke", "#fff")
         .attr("stroke-width", 2);
 }
