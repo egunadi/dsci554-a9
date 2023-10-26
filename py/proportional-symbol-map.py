@@ -77,8 +77,6 @@ def export_population_2020_circles():
     
     circle_df['lon'] = circle_df['Country'].apply(longitude)
     
-    circle_df = circle_df[['Country', 'radius', 'lat', 'lon']]
-    
     circle_df.to_json('../data/population_2020_circles.json', orient='records')
 
 if __name__ == '__main__':
