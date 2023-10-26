@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDP and Population Comparison between Japan and Korea</title>
+    <title>GDP and Population Comparison between Japan, Korea, Indonesia, China, and Singapore</title>
     <!-- Add Bootstrap CSS link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Load d3.js -->
@@ -18,7 +18,7 @@
         <!-- Dashboard Header -->
         <div class="row dashboard-header">
             <div class="col">
-                <h1 class="mt-4">GDP and Population Comparison between Japan and Korea</h1>
+                <h1 class="mt-4">GDP and Population Comparison between Japan, Korea, Indonesia, China, and Singapore</h1>
             </div>
         </div>
         <div class="col-md-6"> <!-- Make each card take up half of the row -->
@@ -50,20 +50,22 @@
     // Map and projection
     var path = d3.geoPath();
     var projection = d3.geoMercator()
-        .scale(300) // Decreased scale for greater zoom out
+        .scale(280) // Decreased scale for greater zoom out
         .translate([widthMap / 2, heightMap / 2])
         .center([110, 25]); // Adjusted center coordinates
 
     // Data and color scale
     var data = d3.map();
     var colorScale = d3.scaleThreshold()
-      .domain([100000, 1000000, 10000000, 30000000, 100000000, 500000000])
-      .range(d3.schemeBlues[7]);
+      .domain([100000, 30000000, 500000000])
+      .range(d3.schemeBlues[3]);
 
     // Load external data and boot
     d3.queue()
       .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-      .defer(d3.csv, "data/world_population.csv", function(d) { data.set(d.code, +d.pop); })
+      .defer(d3.csv, "data/world_population.csv", function(d) { data.set(d.code, +d.pop); 
+          console.log(d.code, +d.pop); // Add this line to debug the data loading
+      })
       .await(ready);
 
     function ready(error, topo) {
@@ -83,8 +85,39 @@
             d.total = data.get(d.id) || 0;
             return colorScale(d.total);
           });
-        }
 
-    </script></body>
+      // Create a legend
+      var legendColors = colorScale.range();
+      var legendWidth = 50;
+      var legendHeight = 20;
 
+      // Define legend labels
+      var legendLabels = ['< 100k', '30M', '> 500M'];
+
+      var legend = svgMap.append("g")
+          .attr("class", "legend")
+          .attr("transform", "translate(5,360)");
+
+      legend.selectAll("rect")
+          .data(legendColors)
+          .enter().append("rect")
+          .attr("x", function(d, i) { return i * legendWidth; })
+          .attr("y", 0)
+          .attr("width", legendWidth)
+          .attr("height", legendHeight)
+          .style("fill", function(d) { return d; });
+
+      // Adjust the x-coordinate calculation for text
+      legend.selectAll("text")
+          .data(legendLabels)
+          .enter().append("text")
+          .attr("x", function(d, i) { return i * legendWidth + legendWidth / 2; }) // Center the text within each rectangle
+          .attr("y", legendHeight + 15)
+          .style("text-anchor", "middle")
+          .text(function(d) { return d; });
+
+    }
+
+    </script>
+</body>
 </html>
