@@ -8,11 +8,11 @@ function createProportionalSymbolMap() {
         .attr("width", widthMap)
         .attr("height", heightMap);
 
-    // Define a projection centered on Japan and Korea
+    // Define a projection centered on Asia with a decreased scale for more zoom out
     var projection = d3.geoMercator()
-        .scale(400) // Adjust the scale as needed
+        .scale(300) // Decreased scale for greater zoom out
         .translate([widthMap / 2, heightMap / 2])
-        .center([137, 37]) // Center coordinates for Japan
+        .center([110, 25]); // Adjusted center coordinates
 
     var path = d3.geoPath().projection(projection);
 
@@ -27,7 +27,13 @@ function createProportionalSymbolMap() {
     });
 
     // Add bubbles to the map
-    var bubbleData = [{"Country":"Japan","radius":35.3899365639,"lat":36.2048,"lon":138.2529},{"Country":"Korea","radius":22.7694290662,"lat":35.9078,"lon":127.7669}];
+    var bubbleData = [
+        {"Country":"Japan","radius":35.3899365639,"lat":36.2048,"lon":138.2529},
+        {"Country":"Korea","radius":22.7694290662,"lat":35.9078,"lon":127.7669},
+        {"Country":"Indonesia","radius":52.140000959,"lat":-0.7893,"lon":113.9213},
+        {"Country":"China","radius":119.3704226766,"lat":35.8617,"lon":104.1954},
+        {"Country":"Singapore","radius":7.6875672355,"lat":1.3521,"lon":103.8198}
+    ];
 
     var bubbleGroup = svgMap.append("g");
 
