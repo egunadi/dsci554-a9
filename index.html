@@ -16,6 +16,7 @@
     <script src="js/line-chart.js"></script>
     <script src="js/pie-chart.js"></script>
     <script src="js/big-number.js"></script>
+    <script src="js/proportional-symbol-map.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -74,6 +75,17 @@
             <div class="col-md-6"> <!-- Make each card take up half of the row -->
                 <div class="card">
                     <div class="card-body">
+                        <h5 class="card-title"><a href="proportional-symbol-map.html">Relative Populations (Bubble Area) in 2020</a></h5>
+                        <div class="proportional-symbol-map" id="proportional-symbol-map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fourth Row -->
+        <div class="row mt-4">
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
                         <h5 class="card-title"><a href="table.html">Summary Statistics on Population & GDP</a></h5>
                         <div class="table-responsive">
                             <div id="table-container"></div>
@@ -99,12 +111,14 @@
         createLineChart();
         createPieChart();
         createBigNumber();
+        createProportionalSymbolMap();
 
         // Handle window resize to update chart dimensions
         window.addEventListener("resize", function () {
             createScatterplot();
             createBarChart();
             createLineChart();
+            createProportionalSymbolMap();
         });
     </script>
 
