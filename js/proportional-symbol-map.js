@@ -45,7 +45,7 @@ function createProportionalSymbolMap() {
     var bubbleGroup = svgMap.append("g");
 
     bubbleGroup.selectAll("circle")
-        .data(bubbleData)
+        .data(bubbleData.sort((a, b) => (["Korea", "Singapore"].includes(a.Country)) ? 1 : -1)) // Sort data so Korea and Singapore are processed last
         .enter()
         .append("circle")
         .attr("cx", function (d) { return projection([d.lon, d.lat])[0]; })
