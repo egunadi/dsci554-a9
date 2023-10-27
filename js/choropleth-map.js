@@ -18,14 +18,14 @@ function createChoroplethMap() {
     // Data and color scale
     var data = d3.map();
     var colorScale = d3.scaleThreshold()
-      .domain([100000, 30000000, 500000000])
+      .domain([50000000, 5000000000, 50000000000])
       .range(d3.schemeBlues[3]);
 
     // Load external data and boot
     d3.queue()
       .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
-      .defer(d3.csv, "data/world_population.csv", function(d) { data.set(d.code, +d.pop); 
-          // console.log(d.code, +d.pop); // Add this line to debug the data loading
+      .defer(d3.csv, "data/gdp_per_capita_2020.csv", function(d) { data.set(d.country_code, +d.GDP_per_Capita); 
+          console.log(d.country_code, +d.GDP_per_Capita); // Add this line to debug the data loading
       })
       .await(ready);
 
@@ -53,7 +53,7 @@ function createChoroplethMap() {
       var legendHeight = 20;
 
       // Define legend labels
-      var legendLabels = ['< 100k', '30M', '> 500M'];
+      var legendLabels = ['50M', '5B', '50B'];
 
       var legend = svgMap.append("g")
           .attr("class", "legend")

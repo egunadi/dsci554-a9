@@ -111,7 +111,7 @@ def export_gdp_per_capita():
     
     combined_df_simplified['country_code'] = combined_df_simplified['Country'].apply(country_code)
     
-    combined_df_simplified.to_json('../data/gdp_per_capita_2020.json', orient='records')
+    combined_df_simplified.to_csv('../data/gdp_per_capita_2020.csv', encoding='utf-8', index=False)
     
 if __name__ == '__main__':
     export_gdp_per_capita()
