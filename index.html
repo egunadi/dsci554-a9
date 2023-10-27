@@ -9,6 +9,8 @@
     <!-- Add D3.js library -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/scatterplot.js"></script>
     <script src="js/bar-chart.js"></script>
@@ -17,6 +19,7 @@
     <script src="js/pie-chart.js"></script>
     <script src="js/big-number.js"></script>
     <script src="js/proportional-symbol-map.js"></script>
+    <script src="js/choropleth-map.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -80,6 +83,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6"> <!-- Make each card take up half of the row -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="choropleth-map.html">GDP per Capita in 2020</a></h5>
+                        <div class="choropleth-map" id="choropleth-map"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Fourth Row -->
         <div class="row mt-4">
@@ -112,6 +123,7 @@
         createPieChart();
         createBigNumber();
         createProportionalSymbolMap();
+        createChoroplethMap();
 
         // Handle window resize to update chart dimensions
         window.addEventListener("resize", function () {
@@ -119,6 +131,7 @@
             createBarChart();
             createLineChart();
             createProportionalSymbolMap();
+            createChoroplethMap();
         });
     </script>
 
