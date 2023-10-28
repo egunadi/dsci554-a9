@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 def export_cities():
     cities_filepath = '../data/worldcities.csv'
