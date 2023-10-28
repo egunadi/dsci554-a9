@@ -3,6 +3,10 @@ function createTable() {
     // Select the table container
     var tableContainer = d3.select("#table-container");
 
+    // Apply CSS styles using D3
+    tableContainer.style("max-height", "400px")
+                  .style("overflow-y", "auto");
+
     // Create the table structure
     var table = tableContainer.append("table").attr("class", "table table-striped table-custom");
     var thead = table.append("thead");
